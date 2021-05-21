@@ -1,6 +1,7 @@
 package com.example.jpasetting.model;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,6 +16,10 @@ public class UserService {
     public List<User> getUsers(){
         List<User> user = userRepository.findAll();
         return user;
+    }
+
+    public Page<User> getQuerydslUser(){
+        return userRepository.findByAll();
     }
 
     @Transactional

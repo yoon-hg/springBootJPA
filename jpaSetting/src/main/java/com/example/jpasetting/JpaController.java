@@ -4,8 +4,8 @@ import com.example.jpasetting.model.User;
 import com.example.jpasetting.model.UserService;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,6 +19,13 @@ public class JpaController {
     @GetMapping(value = "/user")
     public String getUser(){
         List<User>  userList = userService.getUsers();
+        String json = new Gson().toJson(userList);
+        return json;
+    }
+
+    @GetMapping(value = "/querydsl/user")
+    public String getQuerydslUser(){
+        Page<User> userList = userService.getQuerydslUser();
         String json = new Gson().toJson(userList);
         return json;
     }
